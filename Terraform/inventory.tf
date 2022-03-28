@@ -16,4 +16,5 @@ resource "local_file" "credentials" {
   file_permission   = "0600"
   content = <<EOF
 ubuntu_host="${aws_instance.ubuntu_web_server.public_ip}" db_host="${aws_db_instance.GeoCitizenDB.endpoint}"
+EOF
 }
