@@ -25,17 +25,3 @@ sed -i "s/$old_serverip/$ubuntu_host/g" ~/Geocit134/src/main/java/com/softservei
 sed -i "s/$old_serverip/$ubuntu_host/g" ~/Geocit134/src/main/webapp/static/js/*
 sed -i "s/$old_serverip/$ubuntu_host/g" ~/Geocit134/src/main/resources/application.properties
 sed -i "s/$old_dbip/$new_dbip/g" ~/Geocit134/src/main/resources/application.properties
-
-#----------------------------------------------------------------------------------------------------
-# Correct path to js directory
-
-sed -i "s/\/src\/assets/\.\/static/g" ~/Geocit134/src/main/webapp/index.html
-# /src/assets / ./static
-#-----------------------------------------------------------------------------------------------------
-# build and deploy
-
-# mvn install
-# sleep 5
-# sudo mv target/citizen.war /usr/share/tomcat/webapps/ 
-# sleep 5
-# sudo sh /usr/share/tomcat/bin/startup.sh
