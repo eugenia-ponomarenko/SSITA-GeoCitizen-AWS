@@ -18,4 +18,12 @@ pipeline {
             }
         }
     }
+    post {
+       success {
+           slackSend(channel: 'geocitizen', color: 'good', message: "Build success  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+       }
+       failure {
+           slackSend(channel: 'geocitizen', color: '#8E0E0E', message: "Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+       }
+    }
 }
