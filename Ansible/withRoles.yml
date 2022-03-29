@@ -6,25 +6,22 @@
   remote_user: ubuntu       
   
   vars:
-    tomcat_ver: 9.0.60                         
-    ui_manager_user: janedo                    
-    ui_manager_pass: passwd                    
-    ui_admin_username: janedo                  
-    ui_admin_pass: passwd         
+    tomcat_ver: 9.0.60         
 
-  # roles:
-  #   - tomcat9
+  roles:
+    - tomcat9
   
   tasks:
-  # - name: Install Maven, Git
-  #   become: yes
-  #   apt:
-  #     name: "{{ packages }}"
-  #     state: present
-  #   vars:
-  #     packages:
-  #         - maven
-  #         - git
+  - include_vars: vars.yml
+  - name: Install Maven, Git
+    become: yes
+    apt:
+      name: "{{ packages }}"
+      state: present
+    vars:
+      packages:
+          - maven
+          - git
 
   - name: Copy files from local to remote
     copy:
