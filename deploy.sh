@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# sudo rm -rf ~/Geocit134
-# cd ~/
-# git clone https://github.com/mentorchita/Geocit134.git
+sudo rm -rf ~/Geocit134
+cd ~/
+git clone https://github.com/mentorchita/Geocit134.git
 cd ~/Geocit134
 
 #----------------------------------------------------------------------------------------------------
@@ -22,14 +22,14 @@ sudo rm -rf /usr/share/tomcat/webapps/citizen
 # #----------------------------------------------------------------------------------------------------
 # Update email credentials
 
-# . ~/emailCredentials
+. ~/emailCredentials
 
-# old_mail="[a-z0-9.]\{5,\}@gmail\.com"
-# old_passwd="email.password=[A-Za-z0-9!@#$%^&*-]\{8,32\}"
-# new_passwd="email.password=$password"
+old_mail="[a-z0-9.]\{5,\}@gmail\.com"
+old_passwd="email.password=[A-Za-z0-9!@#$%^&*-]\{8,32\}"
+new_passwd="email.password=$password"
 
-# sed -i "s/$old_mail/$email/g" ~/Geocit134/src/main/resources/application.properties
-# sed -i "s/$old_passwd/$new_passwd/g" ~/Geocit134/src/main/resources/application.properties
+sed -i "s/$old_mail/$email/g" ~/Geocit134/src/main/resources/application.properties
+sed -i "s/$old_passwd/$new_passwd/g" ~/Geocit134/src/main/resources/application.properties
 
 #----------------------------------------------------------------------------------------------------
 # Update ip addresses
@@ -43,12 +43,12 @@ new_dbip="postgresql:\/\/$db_host"
 sed -i "s/$old_serverip/$ubuntu_host/g" ~/Geocit134/src/main/java/com/softserveinc/geocitizen/configuration/MongoConfig.java   
 sed -i "s/$old_serverip/$ubuntu_host/g" ~/Geocit134/src/main/webapp/static/js/*
 sed -i "s/$old_serverip/$ubuntu_host/g" ~/Geocit134/src/main/resources/application.properties
-# sed -i "s/$old_dbip/$new_dbip/g" ~/Geocit134/src/main/resources/application.properties
+sed -i "s/$old_dbip/$new_dbip/g" ~/Geocit134/src/main/resources/application.properties
 
 #----------------------------------------------------------------------------------------------------
 # Correct path to js directory
 
-# sed -i "s/\/src\/assets/\.\/static/g" ~/Geocit134/src/main/webapp/index.html
+sed -i "s/\/src\/assets/\.\/static/g" ~/Geocit134/src/main/webapp/index.html
 
 #-----------------------------------------------------------------------------------------------------
 # build and deploy
