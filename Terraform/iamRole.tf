@@ -24,6 +24,6 @@ resource "aws_iam_policy_attachment" "attach_policy" {
 }
 
 resource "aws_iam_instance_profile" "geocit_profile" {
-  name = "geoCitizen"
+  name = "geoCit"
   role = aws_iam_role.geocit_accessToRDS.name
 }
