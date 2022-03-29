@@ -7,7 +7,7 @@ locals {
 # ----------------------------------------------
 # ------------------ EC2 -----------------------
 
-resource "aws_instance" "ubuntu_web_server" {
+resource "aws_instance" "u_web_server" {
   ami                    = local.ami_id
   instance_type          = local.instance_type
   vpc_security_group_ids = [aws_security_group.ubuntuSecurityGroup.id]
@@ -20,7 +20,7 @@ resource "aws_instance" "ubuntu_web_server" {
 
 # ----------------------------------------------
 # ------------------ RDS -----------------------
-resource "aws_db_instance" "GeoCitizenDB" {
+resource "aws_db_instance" "GeoCitDB" {
   allocated_storage      = 10
   engine                 = "postgres"
   engine_version         = "12.9"
