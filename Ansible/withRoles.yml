@@ -29,9 +29,9 @@
       dest: ~/
       mode: 0777
     with_items:
-      - "~/DevOpsChernivtsi/GeoCitizen/AWS.Terraform+Ansible/emailCredentials"
-      - "~/DevOpsChernivtsi/GeoCitizen/AWS.Terraform+Ansible/Terraform/details/credentials"
+      - "../emailCredentials"
+      - "../Terraform/details/credentials"
 
   - name: Execute cleanDeploy.sh
-    script: ~/DevOpsChernivtsi/GeoCitizen/AWS.Terraform+Ansible/cleanD.sh
+    script: ../deploy.sh
       
