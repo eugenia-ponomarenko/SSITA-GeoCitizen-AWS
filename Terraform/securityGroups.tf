@@ -4,7 +4,7 @@ variable "ec2_ports" {
 }
 
 resource "aws_security_group" "ubuntuSecurityGroup" {
-  name        = "WebServer Security Group"
+  name        = "Ubuntu WebServer Security Group"
   description = "GeoCitizen. SecurityGroup for Ubuntu"
   dynamic "ingress" {
     for_each = var.ec2_ports
@@ -25,7 +25,7 @@ resource "aws_security_group" "ubuntuSecurityGroup" {
 }
 
 resource "aws_security_group" "RDS_SecurityGroup" {
-  name        = "PostgreSQL Security Group"
+  name        = "RDS PostgreSQL Security Group"
   description = "GeoCitizen. SecurityGroup for RDS"
 
   ingress {
