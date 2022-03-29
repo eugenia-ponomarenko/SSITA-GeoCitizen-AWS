@@ -23,15 +23,15 @@
           - maven
           - git
 
-  - name: Copy files from local to remote
-    copy:
-      src: "{{ item }}"
-      dest: ~/
-      mode: 0777
-    with_items:
-      - "../emailCredentials"
-      - "../Terraform/details/credentials"
+#   - name: Copy files from local to remote
+#     copy:
+#       src: "{{ item }}"
+#       dest: ~/
+#       mode: 0777
+#     with_items:
+#       - "../emailCredentials"
+#       - "../Terraform/details/credentials"
 
-  - name: Execute cleanDeploy.sh
-    script: ../deploy.sh
+#   - name: Execute cleanDeploy.sh
+#     script: ../deploy.sh
       
