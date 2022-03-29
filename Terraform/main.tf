@@ -4,11 +4,6 @@ locals {
   instance_type = "t2.micro"
 }
 
-provider "aws" {
-  region  = "eu-central-1"
-  profile = "default"
-}
-
 # ----------------------------------------------
 # ------------------ EC2 -----------------------
 
@@ -21,9 +16,7 @@ resource "aws_instance" "ubuntu_web_server" {
   tags = {
     Name = "Ubuntu-WebServer"
   }
-
 }
-
 
 # ----------------------------------------------
 # ------------------ RDS -----------------------
