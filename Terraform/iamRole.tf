@@ -1,5 +1,5 @@
 resource "aws_iam_role" "geocit_accessToRDS" {
-  name = "Geocit-AccessToRDS"
+  name = "GeoCitizen-AccessToRDS"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -24,6 +24,6 @@ resource "aws_iam_policy_attachment" "attach_policy" {
 }
 
 resource "aws_iam_instance_profile" "geocit_profile" {
-  name = "geocitizen"
+  name = "geoCitizen"
   role = aws_iam_role.geocit_accessToRDS.name
 }
