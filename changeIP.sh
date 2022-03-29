@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------------------------
 # Update email credentials
 
-. ~/emailCredentials
+. ./emailCredentials
 
 old_mail="[a-z0-9.]\{5,\}@gmail\.com"
 old_passwd="email.password=[A-Za-z0-9!@#$%^&*-]\{8,32\}"
@@ -15,7 +15,7 @@ sed -i "s/$old_passwd/$new_passwd/g" ~/Geocit134/src/main/resources/application.
 #----------------------------------------------------------------------------------------------------
 # Update ip addresses
 
-. ~/credentials
+. ./Terraform/details/credentials
 
 old_serverip="localhost\|[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"
 old_dbip="postgresql:\/\/[a-zA-Z0-9.-]*:5432"
