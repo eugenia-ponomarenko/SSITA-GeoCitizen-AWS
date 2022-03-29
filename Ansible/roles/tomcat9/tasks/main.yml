@@ -26,13 +26,13 @@
   group:
     name: tomcat
 
-# - name: Add "tomcat" user
-#   user:
-#     name: tomcat
-#     group: tomcat
-#     home: /usr/share/tomcat
-#     createhome: no
-#     system: yes
+- name: Add "tomcat" user
+  user:
+    name: tomcat
+    group: tomcat
+    home: /usr/share/tomcat
+    createhome: no
+    system: yes
 
 - name: Download Tomcat
   get_url:
