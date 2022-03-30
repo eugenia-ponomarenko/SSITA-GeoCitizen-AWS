@@ -16,19 +16,19 @@
     - tomcat9
   
   tasks:
-  - include_vars: vars.yml
-  
   - name: Install Git
     become: yes
     apt:
       name: git
       state: present
 
+  - name: Delete citizen from Tomcat
+    command: rm -rf /usr/share/tomcat/webapps/citizen.war; rm -rf /usr/share/tomcat/webapps/citizen
+
   - name: Copy files from local to remote
     copy:
       src: ../target/citizen.war
       dest: /usr/share/tomcat/webapps/
-      mode: 0777
 
   - name: Execute Tomcat startup.sh
     command: sh /usr/share/tomcat/bin/startup.sh
