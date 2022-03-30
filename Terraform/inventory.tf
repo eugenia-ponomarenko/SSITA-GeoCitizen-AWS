@@ -7,7 +7,7 @@ ubuntu_server:
     ${aws_instance.u_web_server.public_ip} 
   vars:
     ansible_ssh_user: ubuntu
-#     ansible_ssh_private_key_file: ./ansible_ssh_key.pem
+    ansible_ssh_private_key_file: ../.ssh/ansible_ssh_key.pem
     ansible_python_interpreter: /usr/bin/python3
 EOF
 }
