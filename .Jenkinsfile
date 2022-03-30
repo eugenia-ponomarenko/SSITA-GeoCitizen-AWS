@@ -10,44 +10,47 @@ pipeline {
     }
     
     stages {
-        stage('Copy email credentials and vars.yml') {
-            steps {
+         stage('Copy email credentials and vars.yml') {
+             steps {
+               sh "mkdir ./.ssh"
                sh "sudo cp \$EMAIL_CREDENTIALS ./"
                sh "sudo cp \$VARS_ANSIBLE ./Ansible/"
-               sh "sudo cp \$ANSIBLE_KEY ./Ansible/"
-            }
-        }
+               sh "sudo cp \$ANSIBLE_KEY ./.ssh/"
+               sh "sudo chmod 600 ./.ssh/ansible_ssh_key.pem"
+             }
+         }
         
-        stage('Terraform apply'){
-            steps{
-                sh "cd Terraform/; terraform init; terraform apply --auto-approve"
-            }
-        }
+         stage('Terraform apply'){
+             steps{
+                 sh "cd Terraform/; terraform init; terraform apply --auto-approve"
+             }
+         }
         
-        stage('Update IP addresses'){
-            steps{
-                sh "sudo sh changeIP.sh"
-            }
-        }     
-        stage('Build GeoCitizen'){
-            steps{
-                sh "mvn install"
-            }
-        }   
+         stage('Update IP addresses'){
+             steps{
+                 sh "sudo sh changeIP.sh"
+             }
+         }     
+         
+         stage('Build GeoCitizen'){
+             steps{
+                 sh "mvn install"
+             }
+         }   
         
         stage('Ansible-playbook'){
             steps{
-                ansiblePlaybook(
-                    playbook: './Ansible/withRoles.yml',
-                    inventory: './Terraform/inventory/inventory.yaml',
-                    credentialsId: 'ansible_ssh_key',
-                    disableHostKeyChecking: true,
-                    colorized: true)
+                // ansiblePlaybook(
+                //     playbook: './Ansible/withRoles.yml',
+                //     inventory: './Terraform/inventory/inventory.yaml',
+                //     credentialsId: 'ansible_ssh_key',
+                //     disableHostKeyChecking: true
+                //     )
+                sh 'cd ./Ansible; sudo ansible-playbook withRoles.yml'
             }
         }
     }
-
-    post {
+        post {
       // only triggered when blue or green sign
       success {
           slackSend(channel: 'geocitizen', color: 'good', message: "Build success  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
