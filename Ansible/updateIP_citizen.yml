@@ -6,6 +6,5 @@
   remote_user: ubuntu       
   
   tasks:
-
-  - name: Execute Tomcat startup.sh
-    script: sh ../UPD_IP_in_tomcat_citizen.sh
+  - name: Update IPs in /tomcat/webapps/citizen
+    script: ../UPD_IP_in_tomcat_citizen.sh
