@@ -1,6 +1,8 @@
 #!/bin/sh
 
-sudo su -
+[ `whoami` = root ] || exec su -c $0 root
+ls /root
+
 cd /usr/share/tomcat/webapps
 
 vm_host=
