@@ -618,12 +618,12 @@
 </repositories>
 <distributionManagement>
     <repository>
-      <id>nexus</id>
+      <id>maven-releases</id>
       <name>Releases</name>
       <url>http://192.168.1.125:8081/repository/maven-releases</url>
     </repository>
     <snapshotRepository>
-      <id>nexus</id>
+      <id>maven-snapshots</id>
       <name>Snapshot</name>
       <url>http://192.168.1.125:8081/repository/maven-snapshots</url>
     </snapshotRepository>
