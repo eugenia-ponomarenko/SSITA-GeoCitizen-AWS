@@ -18,8 +18,8 @@ sed -i "s/$old_passwd/$new_passwd/g" ./src/main/resources/application.properties
 . ./Terraform/details/credentials
 
 old_serverip="localhost\|[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"
-old_dbip="postgresql:\/\/[a-zA-Z0-9.-]*:5432"
-new_dbip="postgresql:\/\/$db_host"
+old_dbip="postgresql:\/\/[a-zA-Z0-9.-]*:5432\/ss_demo_1"
+new_dbip="postgresql:\/\/$db_host\/ss_demo_1"
 
 sed -i "s/$old_serverip/$ubuntu_host/g" ./src/main/java/com/softserveinc/geocitizen/configuration/MongoConfig.java   
 sed -i "s/$old_serverip/$ubuntu_host/g" ./src/main/webapp/static/js/*
