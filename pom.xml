@@ -616,18 +616,16 @@
             <url>https://repo.spring.io/libs-milestone</url>
         </repository>
 </repositories>
-<!--
 <distributionManagement>
     <repository>
       <id>nexus</id>
       <name>Releases</name>
-      <url>http://35.188.29.52:8081/repository/maven-releases</url>
+      <url>http://192.168.1.125:8081/repository/maven-releases</url>
     </repository>
     <snapshotRepository>
       <id>nexus</id>
       <name>Snapshot</name>
-      <url>http://35.188.29.52:8081/repository/maven-snapshots</url>
+      <url>http://192.168.1.125:8081/repository/maven-snapshots</url>
     </snapshotRepository>
   </distributionManagement>
--->
 </project>
