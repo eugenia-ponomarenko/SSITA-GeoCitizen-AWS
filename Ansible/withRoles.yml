@@ -16,16 +16,10 @@
     - tomcat9
   
   tasks:
-  - name: Install Git
-    become: yes
-    apt:
-      name: git
-      state: present
-
   - name: Delete citizen from Tomcat
     command: rm -rf /usr/share/tomcat/webapps/citizen.war; rm -rf /usr/share/tomcat/webapps/citizen
 
-  - name: Copy files from local to remote
+  - name: Copy citizen.war from local to remote
     copy:
       src: ../target/citizen.war
       dest: /usr/share/tomcat/webapps/
