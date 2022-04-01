@@ -7,4 +7,4 @@
   
   tasks:
   - name: Update IPs in /tomcat/webapps/citizen
-    script: ../UPD_IP_in_tomcat_citizen.sh
+    script: ./UPD_IP_in_tomcat_citizen.sh
