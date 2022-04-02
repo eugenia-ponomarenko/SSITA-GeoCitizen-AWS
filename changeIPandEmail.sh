@@ -24,5 +24,5 @@ sed -i "s/$old_serverip/$ubuntu_host/g" ./src/main/java/com/softserveinc/geociti
 sed -i "s/$old_serverip/$ubuntu_host/g" ./src/main/webapp/static/js/*
 sed -i "s/$old_serverip/$ubuntu_host/g" ./src/main/resources/application.properties
 sed -i "s/$old_dbip/postgresql:\/\/$db_host\/ss_demo_1/g" ./src/main/resources/application.properties
-# sed -i "s/5432\n\/ss_dem_1/5432\/ss_demo_1/g" ./src/main/resources/application.properties
-# sed -i "s/5432\n\/ss_dem_1_test/5432\/ss_demo_1_test/g" ./src/main/resources/application.properties
+sed -i "s/5432\n\/ss_dem_1/5432\/ss_demo_1/g" ./src/main/resources/application.properties
+sed -i "s/5432\n\/ss_dem_1_test/5432\/ss_demo_1_test/g" ./src/main/resources/application.properties
