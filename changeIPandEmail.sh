@@ -15,8 +15,8 @@ sed -i "s/$old_passwd/$new_passwd/g" ./src/main/resources/application.properties
 #----------------------------------------------------------------------------------------------------
 # Update ip addresses
 
-. ./Terraform/details/vm_ip
-. ./Terraform/details/db_ip
+. ./Terraform/details/vm_ip.txt
+. ./Terraform/details/db_ip.txt
 
 old_serverip="localhost\|[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"
 old_dbip="postgresql:\/\/[a-zA-Z0-9.-]*:5432\/ss_demo_1"
