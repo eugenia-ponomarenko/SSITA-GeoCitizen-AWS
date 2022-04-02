@@ -11,17 +11,10 @@ ubuntu_server:
     ansible_python_interpreter: /usr/bin/python3
 EOF
 }
-resource "local_file" "vm_ip" {
-  filename = format("%s/%s/%s", abspath(path.root), "details", "vm_ip.txt")
+resource "local_file" "credentials" {
+  filename = format("%s/%s/%s", abspath(path.root), "details", "credentials")
   file_permission   = "0600"
   content = <<EOL
-ubuntu_host="${aws_instance.u_web_server.public_ip}"
-EOL
-}
-resource "local_file" "db_ip" {
-  filename = format("%s/%s/%s", abspath(path.root), "details", "db_ip.txt")
-  file_permission   = "0600"
-  content = <<EOL
-db_host="${aws_db_instance.GeoCitDB.endpoint}"
+ubuntu_host="${aws_instance.u_web_server.public_ip}" db_host="${aws_db_instance.GeoCitDB.endpoint}" test="test
 EOL
 }
