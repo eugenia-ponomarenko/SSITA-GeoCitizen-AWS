@@ -10,60 +10,59 @@ pipeline {
         AWS_ACCESS_KEY_ID        = credentials('TF_AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY    = credentials('TF_AWS_SECRET_ACCESS_KEY')
         EMAIL_CREDENTIALS        = credentials('emailCreds')
-        // VARS_ANSIBLE             = credentials('vars_file')
         ANSIBLE_KEY              = credentials('ansible_ssh_key')
     }
     
     stages {
-        // stage('Git clone'){
-        //     steps{
-        //         git url: 'http://github.com/eugenia-ponomarenko/SSITA-GeoCitizen.git', credentialsId: 'github', branch: 'test-ansible'
-        //     }
-        // }
+        stage('Git clone'){
+            steps{
+                git url: 'http://github.com/eugenia-ponomarenko/SSITA-GeoCitizen.git', credentialsId: 'github', branch: 'jenkins-pipeline'
+            }
+        }
         
-        // stage('Copy email credentials and ansible_ssh_key.pem') {
-        //     when {
-        //         expression { params.CleanBuildAndDeploy == true }
-        //     }
-        //     steps {
-        //     //   sh "mkdir ./.ssh"
-        //       sh "sudo cp \$EMAIL_CREDENTIALS ./"
-        //       sh "sudo cp \$ANSIBLE_KEY ./.ssh/"
-        //       sh "sudo chmod 600 ./.ssh/ansible_ssh_key.pem"
-        //     }
-        // }
+        stage('Copy email credentials and ansible_ssh_key.pem') {
+            when {
+                expression { params.CleanBuildAndDeploy == true }
+            }
+            steps {
+            //   sh "mkdir ./.ssh"
+              sh "sudo cp \$EMAIL_CREDENTIALS ./"
+              sh "sudo cp \$ANSIBLE_KEY ./.ssh/"
+              sh "sudo chmod 600 ./.ssh/ansible_ssh_key.pem"
+            }
+        }
         
-        // stage('Terraform init'){
-        //     when {
-        //         expression { params.CleanBuildAndDeploy == true }
-        //     }
-        //     steps{
-        //         sh "cd Terraform/; terraform init"
-        //     }
-        // }
+        stage('Terraform init'){
+            when {
+                expression { params.CleanBuildAndDeploy == true }
+            }
+            steps{
+                sh "cd Terraform/; terraform init"
+            }
+        }
         
-        // stage('Terraform apply'){
-        //     steps{
-        //         sh "cd Terraform/; terraform apply --auto-approve"
-        //     }
-        // }
+        stage('Terraform apply'){
+            steps{
+                sh "cd Terraform/; terraform apply --auto-approve"
+            }
+        }
         
-        // stage('Update IP addresses and email credentials in GeoCitizen`s files'){
-        //     when {
-        //         expression { params.UPD == false }
-        //     }
-        //     steps{
-        //         sh "sudo sh changeIPandEmail.sh"
-        //     }
-        // }     
-        // stage('Build GeoCitizen using Maven'){
-        //     when {
-        //         expression { params.UPD == false }
-        //     }
-        //     steps{
-        //         sh "mvn install"
-        //     }
-        // }   
+        stage('Update IP addresses and email credentials in GeoCitizen`s files'){
+            when {
+                expression { params.UPD == false }
+            }
+            steps{
+                sh "sudo sh changeIPandEmail.sh"
+            }
+        }     
+        stage('Build GeoCitizen using Maven'){
+            when {
+                expression { params.UPD == false }
+            }
+            steps{
+                sh "mvn install"
+            }
+        }   
         
         // stage('Deploy GeoCitizen on Nexus'){
         //     when {
@@ -74,7 +73,7 @@ pipeline {
         //     }
         // }   
         
-        stage('Ansible-playbook for configurating VM and WebServer on it'){
+        stage('Ansible-playbook for configurating WebServer on VM'){
             when {
                 expression { params.UPD == false }
             }
@@ -88,7 +87,7 @@ pipeline {
                 expression { params.UPD == true }
             }
             steps{
-                sh 'sh ./addIP_to_script.sh'
+                sh 'sh ./Ansible/addIP_to_script.sh'
             }
         }
         
