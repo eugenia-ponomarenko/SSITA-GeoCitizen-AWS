@@ -15,6 +15,7 @@ resource "local_file" "credentials" {
   filename = format("%s/%s/%s", abspath(path.root), "details", "credentials.sh")
   file_permission   = "0600"
   content = <<EOF 
-db_host="${aws_db_instance.GeoCitDB.endpoint}" ubuntu_host="${aws_instance.u_web_server.public_ip}"
+db_host="${aws_db_instance.GeoCitDB.endpoint}"
+ubuntu_host="${aws_instance.u_web_server.public_ip}"
 EOF
 }
