@@ -618,12 +618,12 @@
 </repositories>
 <distributionManagement>
     <repository>
-      <id>geocitizen-maven-release</id>
+      <id>nexus</id>
       <name>Release</name>
       <url>http://192.168.1.125:8081/repository/maven-releases</url>
     </repository>
     <snapshotRepository>
-      <id>geocitizen-maven-snapshot</id>
+      <id>nexus</id>
       <name>Snapshot</name>
       <url>http://192.168.1.125:8081/repository/maven-snapshots</url>
     </snapshotRepository>
