@@ -26,9 +26,9 @@ pipeline {
             }
             steps {
             //   sh "mkdir ./.ssh"
-              sh "sudo cp \$EMAIL_CREDENTIALS ./"
-              sh "sudo cp \$ANSIBLE_KEY ./.ssh/"
-              sh "sudo chmod 600 ./.ssh/ansible_ssh_key.pem"
+              sh "cp \$EMAIL_CREDENTIALS ./"
+              sh "cp \$ANSIBLE_KEY ./.ssh/"
+              sh "chmod 600 ./.ssh/ansible_ssh_key.pem"
             }
         }
         
@@ -52,9 +52,18 @@ pipeline {
                 expression { params.UPD == false }
             }
             steps{
-                sh "sudo sh changeIPandEmail.sh"
+                sh "sh changeIPandEmail.sh"
             }
         }     
+        
+        stage('Deploy GeoCitizen on Nexus'){
+            when {
+                expression { params.UPD == false }
+            }
+            steps{
+                sh "mvn deploy"
+            }
+        }  
         stage('Build GeoCitizen using Maven'){
             when {
                 expression { params.UPD == false }
@@ -62,16 +71,7 @@ pipeline {
             steps{
                 sh "mvn install"
             }
-        }   
-        
-        // stage('Deploy GeoCitizen on Nexus'){
-        //     when {
-        //         expression { params.UPD == false }
-        //     }
-        //     steps{
-        //         sh "sudo mvn deploy"
-        //     }
-        // }   
+        } 
         
         stage('Ansible-playbook for configurating WebServer on VM'){
             when {
@@ -100,12 +100,10 @@ pipeline {
             }
         }
     }
-        post {
-       // only triggered when blue or green sign
+    post {
        success {
            slackSend(channel: 'geocitizen', color: 'good', message: "Build success  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
        }
-       // triggered when red sign
        failure {
            slackSend(channel: 'geocitizen', color: 'RED', message: "Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
        }
