@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Git clone'){
             steps{
-                git url: 'http://github.com/eugenia-ponomarenko/SSITA-GeoCitizen.git', credentialsId: 'github', branch: 'jenkins-pipeline'
+                git url: 'http://github.com/eugenia-ponomarenko/SSITA-GeoCitizen-AWS.git', credentialsId: 'github', branch: 'jenkins-pipeline'
             }
         }
         
