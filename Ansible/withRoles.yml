@@ -6,7 +6,7 @@
   remote_user: ubuntu       
   
   vars:
-    tomcat_ver: 9.0.60                         
+    tomcat_ver: 9.0.62                      
     ui_manager_user: janedo                    
     ui_manager_pass: passwd                    
     ui_admin_username: janedo                  
