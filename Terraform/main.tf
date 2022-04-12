@@ -2,6 +2,8 @@ locals {
   key_name = "ansible_ssh_key"
   ami_id = "ami-042ad9eec03638628"  # Ubuntu Server 18.04 LTS (HVM)
   instance_type = "t2.micro"
+  db_name = "PostgreSQL_GeoCitizen"
+  vm_name = "Ubuntu_WebServer"
 }
 
 # ----------------------------------------------
@@ -14,7 +16,7 @@ resource "aws_instance" "u_web_server" {
   iam_instance_profile   = aws_iam_instance_profile.geocit_profile.name
   key_name               = local.key_name
   tags = {
-    Name = "Ubuntu-WebServer"
+    Name = local.vm_name
   }
 }
 
@@ -31,4 +33,7 @@ resource "aws_db_instance" "GeoCitDB" {
   parameter_group_name   = "default.postgres12"
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.RDS_SecurityGroup.id]
+   tags = {
+    Name = local.db_name
+  }
 }
