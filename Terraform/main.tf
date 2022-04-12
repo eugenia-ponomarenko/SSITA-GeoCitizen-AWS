@@ -1,14 +1,3 @@
-locals {
-  key_name = "ansible_ssh_key"
-  ami_id = "ami-042ad9eec03638628"  # Ubuntu Server 18.04 LTS (HVM)
-  instance_type = "t2.micro"
-  db_name = "PostgreSQL_GeoCitizen"
-  vm_name = "Ubuntu_WebServer"
-}
-
-# ----------------------------------------------
-# ------------------ EC2 -----------------------
-
 resource "aws_instance" "u_web_server" {
   ami                    = local.ami_id
   instance_type          = local.instance_type
@@ -20,8 +9,6 @@ resource "aws_instance" "u_web_server" {
   }
 }
 
-# ----------------------------------------------
-# ------------------ RDS -----------------------
 resource "aws_db_instance" "GeoCitDB" {
   allocated_storage      = 10
   engine                 = "postgres"
