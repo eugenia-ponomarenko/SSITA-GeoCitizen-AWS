@@ -6,7 +6,7 @@ locals {
   vm_name                   = "Ubuntu_WebServer"
   webserver_security_group  = "Ubuntu Security Group"
   postgres_security_group   = "Postgres Security Group"
-  iam_role_name             = "GeoCit-AccessToRDS"
+  iam_role_name             = "geocitizen-AccessToRDS"
   iam_policy_att_name       = "policy_attachment"
   policy_arn                = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
   iam_instance_profile_name = "GeoCitizen"
