@@ -1,8 +1,3 @@
-variable "ec2_ports" {
-  type    = list(number)
-  default = [22, 8080, 587]
-}
-
 resource "aws_security_group" "ubuntuSecurityGroup" {
   name        = local.webserver_security_group
   description = "GeoCitizen. SecurityGroup for Ubuntu"
