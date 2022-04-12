@@ -9,7 +9,7 @@ locals {
   iam_role_name             = "AccessToRDS"
   iam_policy_att_name       = "policy_attachment"
   policy_arn                = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
-  iam_instance_profile_name = "GeoCitizen"
+  iam_instance_profile_name = "GC-profile"
 }
 
 variable "ec2_ports" {
