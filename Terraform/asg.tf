@@ -32,18 +32,4 @@ resource "aws_autoscaling_group" "as_tf_web" {
     id      = aws_launch_template.web_tomcat.id
     version = "$Latest"
   }
-
-
-  tags = [
-    {
-      key                 = "CR"
-      value               = "SHUTDOWN"
-      propagate_at_launch = true
-    },
-    {
-      key                 = "Name"
-      value               = "TF-Web"
-      propagate_at_launch = true
-    },
-  ]
 }
