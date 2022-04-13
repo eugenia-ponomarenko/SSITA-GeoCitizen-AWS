@@ -63,7 +63,7 @@ resource "aws_lb_listener" "webserver" {
 #       protocol    = "HTTP"
 #       status_code = "HTTP_301"
 #     }
-    target_group_arn = "${aws_lb_target_group.tf-tg.arn}"
+    target_group_arn = "${aws_lb_target_group.target_group.arn}"
     type = "forward"
   }
 }
