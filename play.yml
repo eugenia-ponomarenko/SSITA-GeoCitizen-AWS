@@ -16,13 +16,14 @@
     - tomcat9
   
   tasks:
-  - name: Delete citizen from Tomcat
-    command: rm -rf /usr/share/tomcat/webapps/citizen.war; rm -rf /usr/share/tomcat/webapps/citizen
+  - name: Install AWS CLI
+    become: yes
+    apt:
+      name: awscli
+      state: present
 
-  - name: Copy citizen.war from local to remote
-    copy:
-      src: ../target/citizen.war
-      dest: /usr/share/tomcat/webapps/
+  - name: Execute deploy.sh
+    script: ./deploy.sh
 
   - name: Execute Tomcat startup.sh
     command: sh /usr/share/tomcat/bin/startup.sh
