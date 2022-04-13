@@ -19,7 +19,7 @@ resource "aws_launch_template" "web_tomcat" {
       key                 = "Name"
       value               = "TF-Web"
       propagate_at_launch = true
-    },
+    }
   ]
 
 }
