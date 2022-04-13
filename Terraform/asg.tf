@@ -19,7 +19,6 @@ resource "aws_launch_template" "web_tomcat" {
 # Create AutoScaling group
 resource "aws_autoscaling_group" "as_tf_web" {
   name                 = local.asg_name
-  launch_configuration = "${aws_launch_configuration.web_tomcat.name}"
   min_size             = 1
   max_size             = 2
   desired_capacity     = 2
