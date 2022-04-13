@@ -31,5 +31,3 @@ sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/WEB-INF/cl
 
 # Fix IPs for db
 sudo sed -i "s/$old_dbip/$new_dbip/g" $tomcat_path/webapps/citizen/WEB-INF/classes/application.properties
-
-sudo sh $tomcat_path/bin/startup.sh
