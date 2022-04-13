@@ -2,7 +2,7 @@
 # -------------------------------------------------------------------------------------
 # variables
 
-tomcat_path="/opt/tomcat/latest"
+tomcat_path="/usr/share/tomcat"
 
 old_serverip="localhost\|[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"
 vm_host=$(curl --silent --url "www.ifconfig.me" | tr "\n" " ")
