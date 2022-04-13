@@ -5,7 +5,9 @@ resource "aws_launch_template" "web_tomcat" {
   instance_type          = local.instance_type
   key_name               = local.key_name 
   vpc_security_group_ids = [aws_security_group.ubuntuSecurityGroup.id]
-  iam_instance_profile   = aws_iam_instance_profile.geocit_profile.name
+  iam_instance_profile {
+    name = aws_iam_instance_profile.geocit_profile.name
+  }
   user_data              = filebase64("${path.module}/deploy.sh")
 
   lifecycle {
