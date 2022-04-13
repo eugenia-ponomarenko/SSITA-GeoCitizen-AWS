@@ -37,7 +37,7 @@ resource "aws_iam_policy" "policy" {
 
 resource "aws_iam_policy_attachment" "attach_policy" {
   name       = local.iam_policy_att_name
-  roles      = [aws_iam_role.GeoCit_Role.name]
+  roles      = ["${aws_iam_role.GeoCit_Role.name}"]
   policy_arn = aws_iam_policy.policy.arn
 }
 
