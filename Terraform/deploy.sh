@@ -11,16 +11,15 @@ tomcat_path="/opt/tomcat/latest"
 old_serverip="localhost\|[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"
 vm_host=$(curl --silent --url "www.ifconfig.me" | tr "\n" " ")
 
-db_id="${aws_db_instance.PostgresDB.id}"
-db_host="${aws_db_instance.PostgresDB.endpoint}"
+db_host="terraform-20220402130437975900000001.cstswihxzihx.eu-central-1.rds.amazonaws.com"
 
 old_dbip="postgresql:\/\/[a-zA-Z0-9.-]*:5432"
-new_dbip="postgresql:\/\/$db_host"
+new_dbip="postgresql:\/\/$db_host:5432"
 
 # -------------------------------------------------------------------------------------
 # Start RDS instance
 aws configure set default.region eu-central-1
-aws rds start-db-instance --db-instance-identifier $db_id
+aws rds start-db-instance --db-instance-identifier terraform-20220402130437975900000001
 
 # -------------------------------------------------------------------------------------
 # Install tomcat9
