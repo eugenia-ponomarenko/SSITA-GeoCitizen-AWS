@@ -61,6 +61,7 @@ resource "aws_lb_listener" "webserver" {
     redirect {
       port        = "80"
       protocol    = "HTTP"
+      status_code = "HTTP 301"
     }
   }
 }
