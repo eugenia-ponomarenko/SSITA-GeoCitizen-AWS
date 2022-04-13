@@ -1,0 +1,29 @@
+---
+- hosts: all                 
+
+  become: yes               
+  become_method: sudo       
+  remote_user: ubuntu       
+  
+  vars:
+    tomcat_ver: 9.0.62                      
+    ui_manager_user: janedo                    
+    ui_manager_pass: passwd                    
+    ui_admin_username: janedo                  
+    ui_admin_pass: passwd   
+
+  roles:
+    - tomcat9
+  
+  tasks:
+  - name: Install AWS CLI
+    become: yes
+    apt:
+      name: awscli
+      state: present
+
+  - name: Execute deploy.sh
+    script: ./deploy.sh
+
+  - name: Execute Tomcat startup.sh
+    command: sh /usr/share/tomcat/bin/startup.sh
