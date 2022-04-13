@@ -1,6 +1,6 @@
 ---
-- hosts: all                 
-
+- hosts: localhost
+  connection: local 
   become: yes               
   become_method: sudo       
   remote_user: ubuntu       
@@ -16,14 +16,14 @@
     - tomcat9
   
   tasks:
-  - name: Install AWS CLI
-    become: yes
-    apt:
-      name: awscli
-      state: present
+    - name: Install AWS CLI
+      become: yes
+      apt:
+        name: awscli
+        state: present
 
-  - name: Execute deploy.sh
-    script: ./deploy.sh
+    - name: Execute deploy.sh
+      script: ./deploy.sh
 
-  - name: Execute Tomcat startup.sh
-    command: sh /usr/share/tomcat/bin/startup.sh
+    - name: Restart Tomcat
+      command: systemctl restart tomcat.service
