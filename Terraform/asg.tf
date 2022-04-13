@@ -14,13 +14,13 @@ resource "aws_launch_template" "web_tomcat" {
     create_before_destroy = true
   }
   
-#   tags = [
-#     {
-#       key                 = "Name"
-#       value               = "TF-Web"
-#       propagate_at_launch = true
-#     },
-#   ]
+  tags = [
+    {
+      key                 = "Name"
+      value               = "TF-Web"
+      propagate_at_launch = true
+    },
+  ]
 
 }
 
