@@ -13,7 +13,7 @@ locals {
   webserver_security_group  = "Ubuntu Security Group"
   postgres_security_group   = "Postgres Security Group"
   lb_security_group         = "GeoCitizen_LB"
-  iam_role_name             = "AccessToRDS"
+  iam_role_name             = "AccessToRDSAndS3"
   iam_policy_att_name       = "policy_attachment"
   iam_instance_profile_name = "GC-profile"
 }
