@@ -9,7 +9,7 @@ resource "aws_instance" "u_web_server" {
   }
 }
 
-resource "aws_db_instance" "GeoCitDB" {
+resource "aws_db_instance" "PostgresDB" {
   allocated_storage      = 10
   engine                 = "postgres"
   engine_version         = "12.9"
