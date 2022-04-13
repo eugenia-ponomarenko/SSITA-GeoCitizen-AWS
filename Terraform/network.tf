@@ -56,24 +56,24 @@ resource "aws_lb_listener" "webserver" {
   protocol          = "HTTP"
 
   default_action {
-#     type = "redirect"
+    type = "redirect"
 
-#     redirect {
-#       port        = "80"
-#       protocol    = "HTTP"
-#       status_code = "HTTP_301"
-#     }
-    target_group_arn = "${aws_lb_target_group.tf-tg.arn}"
-    type = "forward"
+    redirect {
+      port        = "80"
+      protocol    = "HTTP"
+      status_code = "HTTP_301"
+    }
+#     target_group_arn = "${aws_lb_target_group.tf-tg.arn}"
+#     type = "forward"
   }
 }
 
-resource "aws_lb_target_group" "target_group" {
-  name     = "tf-geocitizen"
-  port     = 8080
-  protocol = "HTTP"
-  target_type = "ip"
-}
+# resource "aws_lb_target_group" "target_group" {
+#   name     = "tf-geocitizen"
+#   port     = 8080
+#   protocol = "HTTP"
+#   target_type = "ip"
+# }
 
 resource "aws_security_group" "GeoCitizen_LB" {
   name        = local.lb_security_group
