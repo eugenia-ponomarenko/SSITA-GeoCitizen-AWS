@@ -1,5 +1,5 @@
 locals {
-  key_name                  = "ansible_ssh_key"
+  key_name                  = "geocit-app"
   ami_id                    = "ami-042ad9eec03638628"  # Ubuntu Server 18.04 LTS (HVM)
   instance_type             = "t2.micro"
   db_name                   = "PostgreSQL_GeoCitizen"
