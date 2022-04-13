@@ -13,6 +13,12 @@ resource "aws_launch_template" "web_tomcat" {
   lifecycle {
     create_before_destroy = true
   }
+  
+  tag {
+    key                 = "Name"
+    value               = "WebServer"
+    propagate_at_launch = true
+  }
 
 }
 
@@ -32,4 +38,8 @@ resource "aws_autoscaling_group" "as_tf_web" {
     id      = aws_launch_template.web_tomcat.id
     version = "$Latest"
   }
+  
+   load_balancers = [
+    aws_lb.tf_lb_webserver.id
+  ]
 }
