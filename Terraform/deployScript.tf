@@ -1,5 +1,5 @@
 resource "local_file" "ansible_inventory" {
-  filename = format("%s/%s/%s", abspath(path.root), "deploy1.sh")
+  filename = format("%s/%s", abspath(path.root), "deploy1.sh")
   file_permission   = "0755"
   content = <<EOF
 #!/bin/bash
