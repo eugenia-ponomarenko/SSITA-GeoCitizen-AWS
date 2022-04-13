@@ -2,7 +2,7 @@
 
 tomcat_path="/usr/share/tomcat"
 
-db_host="terraform-20220402130437975900000001"
+
 
 old_dbip="postgresql:\/\/[a-zA-Z0-9.-]*:5432"
 new_dbip="postgresql:\/\/$db_host"
