@@ -72,7 +72,6 @@ resource "aws_lb_target_group" "target_group" {
   name     = "tf-geocitizen"
   port     = 8080
   protocol = "HTTP"
-  target_type = "ip"
 }
 
 resource "aws_security_group" "GeoCitizen_LB" {
