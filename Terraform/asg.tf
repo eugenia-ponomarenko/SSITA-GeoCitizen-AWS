@@ -8,7 +8,7 @@ resource "aws_launch_template" "web_tomcat" {
   iam_instance_profile {
     arn = aws_iam_instance_profile.geocit_profile.arn
   }
-  user_data              = filebase64("${path.module}/deploy1.sh")
+  user_data              = filebase64("${path.module}/deploy.sh")
 
   lifecycle {
     create_before_destroy = true
