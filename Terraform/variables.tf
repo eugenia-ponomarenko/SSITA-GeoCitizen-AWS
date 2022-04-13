@@ -3,6 +3,7 @@ locals {
   instance_type             = "t2.micro"
   availability_zones        = ["eu-central-1a", "eu-central-1b"]
   eu_central_1ab            = ["subnet-0bd44ce4febe6eacb", "subnet-0f13e4432ca16d78a"]
+  vpc_id                    = "vpc-008b05236db3e2d5e"
   key_name                  = "geocit-app"
   lb_name                   = "TF-GeoCitizen-LB"
   asg_name                  = "AS_TF_WebServer"
