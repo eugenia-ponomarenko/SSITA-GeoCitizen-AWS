@@ -73,6 +73,7 @@ resource "aws_lb_target_group" "target_group" {
   port        = 8080
   protocol    = "HTTP"
   target_type = "instance"
+  vpc_id      = local.vpc_id
 }
 
 resource "aws_security_group" "GeoCitizen_LB" {
