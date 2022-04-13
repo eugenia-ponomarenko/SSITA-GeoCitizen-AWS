@@ -10,6 +10,7 @@ locals {
   iam_policy_att_name       = "policy_attachment"
   policy_arn                = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
   iam_instance_profile_name = "GC-profile"
+  availability_zones        = ["eu-central-1a", "eu-central-1b"]
 }
 
 variable "ec2_ports" {
