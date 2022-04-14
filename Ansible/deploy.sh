@@ -19,7 +19,7 @@ aws rds start-db-instance --db-instance-identifier lb-geocitizen
 
 # -------------------------------------------------------------------------------------
 # Download citizen.war from S3 
-aws s3 cp s3://geo-citizen-war/geo-citizen-1.0.5-20220404.173539-1.war  ~/citizen.war
+aws s3 cp s3://geo-citizen-war/geo-citizen-1.0.5-20220414.085143-1.war  ~/citizen.war
 
 sudo cp ~/citizen.war  $tomcat_path/webapps/
 
@@ -34,3 +34,4 @@ sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/WEB-INF/cl
 
 # Fix IPs for db
 sudo sed -i "s/$old_dbip/$new_dbip/g"    $tomcat_path/webapps/citizen/WEB-INF/classes/application.properties
+
