@@ -39,7 +39,7 @@ resource "aws_autoscaling_group" "as_tf_web" {
     version = "$Latest"
   }
   
-#    load_balancers = [
-#     aws_lb.tf_lb_webserver.id
-#   ]
+   load_balancers = [
+    aws_lb.tf_lb_webserver.id
+  ]
 }
