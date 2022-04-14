@@ -29,7 +29,8 @@ resource "aws_autoscaling_group" "as_tf_web" {
   max_size             = 2
   desired_capacity     = 2
   availability_zones   = local.availability_zones
-
+  target_group_arns    = [aws_lb_target_group.target_group.arn]
+  
   lifecycle {
     create_before_destroy = true
   }
@@ -38,8 +39,4 @@ resource "aws_autoscaling_group" "as_tf_web" {
     id      = aws_launch_template.web_tomcat.id
     version = "$Latest"
   }
-  
-   load_balancers = [
-    aws_lb.tf_lb_webserver.id
-  ]
 }
