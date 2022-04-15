@@ -28,3 +28,12 @@ resource "local_file" "tg_arn" {
 variable target_group_arn { default = "${aws_lb_target_group.target_group.arn}" }
 EOF
 }
+
+
+resource "local_file" "credentials" {
+  filename = format("%s/%s/%s", abspath(path.root), "details", "credentials")
+  file_permission   = "0600"
+  content = <<EOL
+lb_dns="${aws_lb.tf_lb_webserver.dns_name}" db_host="${aws_db_instance.GeoCitDB.endpoint}" test="test"
+EOL
+}
