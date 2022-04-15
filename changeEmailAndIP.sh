@@ -17,11 +17,12 @@ sed -i "s/$old_passwd/$new_passwd/g" ./src/main/resources/application.properties
 
 . ./Terraform/credentials
 
-old_serverip="localhost\|[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}:8080"
+old_serverip="localhost\|[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"
 old_dbip="postgresql:\/\/[a-zA-Z0-9.-]*:5432\/ss_demo_1"
 new_dbip="postgresql:\/\/$db_host\/ss_demo_1"
 
 sed -i "s/$old_serverip/$lb_dns/g" ./src/main/java/com/softserveinc/geocitizen/configuration/MongoConfig.java   
-sed -i "s/$old_serverip/$lb_dns/g" ./src/main/webapp/static/js/*
-sed -i "s/$old_serverip/$lb_dns/g" ./src/main/resources/application.properties
+sed -i "s/$old_serverip:8080/$lb_dns/g" ./src/main/webapp/static/js/app.*
+sed -i "s/$old_serverip/$lb_dns/g" ./src/main/webapp/static/js/vendor.*
+sed -i "s/$old_serverip:8080/$lb_dns/g" ./src/main/resources/application.properties
 sed -i "s/$old_dbip/$new_dbip/g" ./src/main/resources/application.properties
