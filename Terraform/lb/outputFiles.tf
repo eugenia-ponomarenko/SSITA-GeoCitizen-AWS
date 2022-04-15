@@ -1,5 +1,5 @@
 resource "local_file" "tg_arn" {
-  filename = format("%s/%s", "../module_2", "var.tf")
+  filename = format("%s/%s", "../asg", "var.tf")
   file_permission   = "0755"
   content = <<EOF
 variable target_group_arn { default = "${aws_lb_target_group.target_group.arn}" }
