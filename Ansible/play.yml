@@ -24,6 +24,9 @@
 
     - name: Execute deploy.sh
       script: ./deploy.sh
+     
+    - name: Restart Tomcat
+      command: mv ~/citizen.war /usr/share/tomcat/webapps/citizen.war;
 
     - name: Restart Tomcat
       command: systemctl restart tomcat.service
