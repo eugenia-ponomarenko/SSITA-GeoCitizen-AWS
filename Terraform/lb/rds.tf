@@ -9,9 +9,6 @@ resource "aws_db_instance" "GeoCitDB" {
   parameter_group_name   = "default.postgres12"
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.RDS_SecurityGroup.id]
-   tags = {
-    Name = local.db_name
-  }
 }
 
 resource "aws_security_group" "RDS_SecurityGroup" {
