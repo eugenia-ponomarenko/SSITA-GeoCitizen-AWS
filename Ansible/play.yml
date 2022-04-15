@@ -16,16 +16,7 @@
     - tomcat9
   
   tasks:
-    - name: Install AWS CLI
-      become: yes
-      apt:
-        name: awscli
-        state: present
-
-    - name: Execute deploy.sh
-      script: ./deploy.sh
-     
-    - name: Restart Tomcat
+    - name: Move citizen.war to Tomcat
       command: mv ~/citizen.war /usr/share/tomcat/webapps/citizen.war;
 
     - name: Restart Tomcat
