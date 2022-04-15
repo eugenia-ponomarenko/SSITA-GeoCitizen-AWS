@@ -6,7 +6,7 @@ resource "aws_launch_template" "web_tomcat" {
   key_name               = local.key_name 
   vpc_security_group_ids = [aws_security_group.ubuntuSecurityGroup.id]
   iam_instance_profile {
-    arn = var.target_group_arn
+    arn = aws_iam_instance_profile.geocit_profile.arn
   }
   user_data              = filebase64("${path.module}/user_data.sh")
 
@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "as_tf_web" {
   max_size             = 2
   desired_capacity     = 2
   availability_zones   = local.availability_zones
-  target_group_arns    = [aws_lb_target_group.target_group.arn]
+  target_group_arns    = [var.target_group_arn]
   
   lifecycle {
     create_before_destroy = true
