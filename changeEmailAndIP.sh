@@ -17,7 +17,7 @@ sed -i "s/$old_passwd/$new_passwd/g" ./src/main/resources/application.properties
 
 . ./Terraform/credentials
 
-old_serverip="localhost\|[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"
+old_serverip="localhost\|[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}:8080"
 old_dbip="postgresql:\/\/[a-zA-Z0-9.-]*:5432\/ss_demo_1"
 new_dbip="postgresql:\/\/$db_host\/ss_demo_1"
 
