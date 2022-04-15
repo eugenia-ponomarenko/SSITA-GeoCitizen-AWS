@@ -4,4 +4,6 @@ locals {
   webserver_security_group  = "Ubuntu Security Group"
   vpc_id                    = "vpc-008b05236db3e2d5e"
   lb_security_group         = "GeoCitizen_LB"
+  postgres_security_group   = "Postgres SecurityGroup"
+  db_name                   = "PostgreSQL GeoCitizen"
 }
