@@ -6,7 +6,7 @@ resource "aws_launch_template" "web_tomcat" {
   key_name               = local.key_name 
   vpc_security_group_ids = [aws_security_group.ubuntuSecurityGroup.id]
   iam_instance_profile {
-    arn = aws_iam_instance_profile.geocit_profile.arn
+    arn = var.target_group_arn
   }
   user_data              = filebase64("${path.module}/user_data.sh")
 
@@ -14,11 +14,11 @@ resource "aws_launch_template" "web_tomcat" {
     create_before_destroy = true
   }
   
-#   tag {
-#     key                 = "Name"
-#     value               = "WebServer"
-#     propagate_at_launch = true
-#   }
+  tag {
+    key                 = "Name"
+    value               = "WebServer"
+    propagate_at_launch = true
+  }
 
 }
 
