@@ -53,6 +53,10 @@ resource "aws_lb_target_group" "target_group" {
   protocol    = "HTTP"
   target_type = "instance"
   vpc_id      = local.vpc_id
+  stickiness {
+    enabled = true
+    type    = "lb_cookie"
+  }
 }
 
 resource "aws_security_group" "GeoCitizen_LB" {
