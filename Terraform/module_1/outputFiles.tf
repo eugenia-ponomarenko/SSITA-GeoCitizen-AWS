@@ -20,3 +20,11 @@ git clone -b lg_asg_test https://github.com/eugenia-ponomarenko/SSITA-GeoCitizen
 ansible-playbook ~/lb_asg/Ansible/play.yml;
 EOF
 }
+
+resource "local_file" "ansible_inventory_ubuntu" {
+  filename = format("%s/%s" "../module_2", "var.tf")
+  file_permission   = "0755"
+  content = <<EOF
+variable target_group_arn { default = "${aws_lb_target_group.target_group.arn}" }
+EOF
+}
