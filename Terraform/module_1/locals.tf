@@ -5,8 +5,3 @@ locals {
   vpc_id                    = "vpc-008b05236db3e2d5e"
   lb_security_group         = "GeoCitizen_LB"
 }
-
-variable "ec2_ports" {
-  type    = list(number)
-  default = [22, 8080, 587]
-}
