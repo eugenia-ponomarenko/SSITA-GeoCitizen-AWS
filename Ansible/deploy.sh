@@ -19,19 +19,19 @@ aws rds start-db-instance --db-instance-identifier lb-geocitizen
 
 # -------------------------------------------------------------------------------------
 # Download citizen.war from S3 
-aws s3 cp s3://geo-citizen-war/geo-citizen-oci-1.0.5-20220415.085707-2.war ~/citizen.war
+aws s3 cp s3://geo-citizen-war/geo-citizen-1.0.5-20220415.095333-7.war ~/citizen.war
 
 sudo cp ~/citizen.war  $tomcat_path/webapps/
 
 # ----------------------------------------------------------------------------------------
 # Fix IPs for webapp
 sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/WEB-INF/classes/com/softserveinc/geocitizen/configuration/MongoConfig.class
-sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/static/js/*
+# sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/static/js/*
 
-# sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/static/js/app.6313e3379203ca68a255.js.map
-# sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/static/js/vendor.9ad8d2b4b9b02bdd427f.js.map
-# sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/static/js/vendor.9ad8d2b4b9b02bdd427f.js
-# sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/static/js/app.6313e3379203ca68a255.js
+sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/static/js/app.6313e3379203ca68a255.js.map
+sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/static/js/vendor.9ad8d2b4b9b02bdd427f.js.map
+sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/static/js/vendor.9ad8d2b4b9b02bdd427f.js
+sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/static/js/app.6313e3379203ca68a255.js
 
 sudo sed -i "s/$old_serverip/$vm_host/g" $tomcat_path/webapps/citizen/WEB-INF/classes/application.properties
 
