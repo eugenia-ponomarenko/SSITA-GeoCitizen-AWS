@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "as_tf_web" {
   max_size             = 2
   desired_capacity     = 2
   availability_zones   = local.availability_zones
-  target_group_arns    = [var.target_group_arn]
+  target_group_arn     = var.target_group_arn
   
   lifecycle {
     create_before_destroy = true
