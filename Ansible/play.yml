@@ -14,10 +14,3 @@
 
   roles:
     - tomcat9
-  
-  tasks:
-    - name: Move citizen.war to Tomcat
-      command: mv ~/citizen.war /usr/share/tomcat/webapps/citizen.war;
-
-    - name: Restart Tomcat
-      command: systemctl restart tomcat.service
