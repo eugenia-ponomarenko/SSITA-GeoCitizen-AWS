@@ -8,3 +8,5 @@ aws s3 cp s3://geo-citizen-war/citizen.war ~/citizen.war;
 # Run Ansible playbook
 git clone -b lb_asg https://github.com/eugenia-ponomarenko/SSITA-GeoCitizen-AWS.git ~/lb_asg;
 ansible-playbook ~/lb_asg/Ansible/play.yml;
+sudo mv ~/citizen.war /usr/share/tomcat/webapps/citizen.war;
+sudo systemctl restart tomcat.service;
