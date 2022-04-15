@@ -14,7 +14,7 @@ resource "aws_launch_template" "web_tomcat" {
     create_before_destroy = true
   }
   
-  tags {
+  tags = {
     key                 = "Name"
     value               = "WebServer"
     propagate_at_launch = true
