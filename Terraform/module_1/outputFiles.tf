@@ -1,5 +1,5 @@
 resource "local_file" "ansible_inventory_ubuntu" {
-  filename = format("%s/%s" "../module_2", "user_data.sh")
+  filename = format("%s/%s", "../module_2", "user_data.sh")
   file_permission   = "0755"
   content = <<EOF
 #!/bin/bash
@@ -22,7 +22,7 @@ EOF
 }
 
 resource "local_file" "ansible_inventory_ubuntu" {
-  filename = format("%s/%s" "../module_2", "var.tf")
+  filename = format("%s/%s", "../module_2", "var.tf")
   file_permission   = "0755"
   content = <<EOF
 variable target_group_arn { default = "${aws_lb_target_group.target_group.arn}" }
