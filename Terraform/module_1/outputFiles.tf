@@ -1,4 +1,4 @@
-resource "local_file" "ansible_inventory_ubuntu" {
+resource "local_file" "user_data" {
   filename = format("%s/%s", "../module_2", "user_data.sh")
   file_permission   = "0755"
   content = <<EOF
@@ -21,7 +21,7 @@ ansible-playbook ~/lb_asg/Ansible/play.yml;
 EOF
 }
 
-resource "local_file" "ansible_inventory_ubuntu" {
+resource "local_file" "tg_arn" {
   filename = format("%s/%s", "../module_2", "var.tf")
   file_permission   = "0755"
   content = <<EOF
