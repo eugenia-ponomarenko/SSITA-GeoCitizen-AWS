@@ -1,5 +1,5 @@
 resource "local_file" "ansible_inventory_ubuntu" {
-  filename = format("%s/%s", abspath(path.root), "user_data.sh")
+  filename = format("%s/%s/%s", abspath(path.root), "module_2", "user_data.sh")
   file_permission   = "0755"
   content = <<EOF
 #!/bin/bash
