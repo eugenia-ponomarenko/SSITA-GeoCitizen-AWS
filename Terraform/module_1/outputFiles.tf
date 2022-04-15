@@ -31,7 +31,7 @@ EOF
 
 
 resource "local_file" "credentials" {
-  filename = format("%s/%s/%s", abspath(path.root), "details", "credentials")
+  filename = format("%s/%s", "../", "credentials")
   file_permission   = "0600"
   content = <<EOL
 lb_dns="${aws_lb.tf_lb_webserver.dns_name}" db_host="${aws_db_instance.GeoCitDB.endpoint}" test="test"
