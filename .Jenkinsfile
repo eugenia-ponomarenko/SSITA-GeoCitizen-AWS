@@ -5,7 +5,6 @@ pipeline {
         AWS_ACCESS_KEY_ID        = credentials('TF_AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY    = credentials('TF_AWS_SECRET_ACCESS_KEY')
         EMAIL_CREDENTIALS        = credentials('emailCreds')
-        ANSIBLE_KEY              = credentials('ansible_ssh_key')
         SETTINGS_MAVEN           = credentials('settings_maven')
     }
     
