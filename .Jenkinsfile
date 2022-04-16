@@ -14,11 +14,11 @@ pipeline {
     }
     
     stages {
-        // stage('Git clone'){
-        //     steps{
-        //         git url: 'http://github.com/eugenia-ponomarenko/SSITA-GeoCitizen-AWS.git', credentialsId: 'github', branch: 'lb_asg'
-        //     }
-        // }
+        stage('Git clone'){
+            steps{
+                git url: 'http://github.com/eugenia-ponomarenko/SSITA-GeoCitizen-AWS.git', credentialsId: 'github', branch: 'lb_asg'
+            }
+         }
         
         stage('Copy email credentials') {
             when {
