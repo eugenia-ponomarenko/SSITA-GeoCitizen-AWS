@@ -36,9 +36,6 @@ resource "aws_autoscaling_group" "as_tf_web" {
   max_size             = 3
   desired_capacity     = 2
   availability_zones   = local.availability_zones
-  termination_policies = [
-    "OldestInstance"
-  ]
 
   health_check_type = "ELB"
   
@@ -47,7 +44,7 @@ resource "aws_autoscaling_group" "as_tf_web" {
     version = "$Latest"
   }
   
-#   target_group_arns    = [var.target_group_arn]
+  target_group_arns    = [var.target_group_arn]
   
   lifecycle {
     create_before_destroy = true
