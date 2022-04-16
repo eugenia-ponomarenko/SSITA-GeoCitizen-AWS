@@ -25,10 +25,21 @@ resource "aws_lb_target_group" "target_group" {
   protocol    = "HTTP"
   target_type = "instance"
   vpc_id      = local.vpc_id
+  
   stickiness {
     enabled = true
     type    = "lb_cookie"
   }
+  
+#   health_check {
+#     path = "/citizen/index.html"
+#     port = 8080
+#     healthy_threshold = 6
+#     unhealthy_threshold = 2
+#     timeout = 2
+#     interval = 5
+#     matcher = "200"  # has to be HTTP 200 or fails
+#   }
 }
 
 resource "aws_security_group" "GeoCitizen_LB" {
