@@ -11,6 +11,9 @@ pipeline {
         AWS_SECRET_ACCESS_KEY    = credentials('TF_AWS_SECRET_ACCESS_KEY')
         EMAIL_CREDENTIALS        = credentials('emailCreds')
         psql_var                 = credentials('psql_var')
+        SETTINGS_MAVEN           = credentials('settings_maven')
+        SECURITY_SETTINGS_MAVEN  = credentials('security_settings_maven')
+        NEXUS                    = credentials('nexus-maven')
     }
     
     stages {
@@ -27,8 +30,13 @@ pipeline {
             steps {
               sh "sudo cp \$EMAIL_CREDENTIALS ./"
               sh "sudo cp \$psql_var ./Terraform/lb_s3_rds/"
+              sh "sudo cp \$NEXUS ./Terraform/asg/"
+              sh "sudo cp \$SETTINGS_MAVEN /var/lib/jenkins/.m2/"
+              sh "sudo cp \$SECURITY_SETTINGS_MAVEN /var/lib/jenkins/.m2/"
               sh "sudo chmod 755 ./Terraform/lb_s3_rds/psql_var.tf"
               sh "sudo chmod 755 ./emailCredentials"
+              sh "sudo chmod 755 /var/lib/jenkins/.m2/settings.xml"
+              sh "sudo chmod 755 ./Terraform/asg/nexus_var.tf"
             }
         }
         
@@ -42,17 +50,8 @@ pipeline {
             when {
                 expression { params.Apply == true }
             }
-            steps{
-                sh "cd Terraform/lb_s3_rds/; terraform apply --auto-approve"
-            }
-        }
-        
-        stage('Terraform destroy LB and RDS'){
-            when {
-                expression { params.Destroy == true }
-            }
-            steps{
-                sh "cd Terraform/lb_s3_rds/; terraform destroy --auto-approve"
+            steps {
+                    sh "cd Terraform/lb_s3_rds/; terraform apply --auto-approve -no-color"
             }
         }
         
@@ -63,7 +62,16 @@ pipeline {
             steps{
                 sh "sudo sh changeEmailAndIP.sh"
             }
-        }        
+        }    
+        
+        stage('Update IP address for Nexus'){
+            when {
+                expression { params.Destroy == false }
+            }
+            steps{
+                sh 'sudo sed -i "s/192.168.1.125:8081/10.0.0.124:8081/g" ./pom.xml'
+            }
+        } 
        
         stage('Build GeoCitizen using Maven'){
             when {
@@ -74,14 +82,14 @@ pipeline {
             }
         }  
         
-        stage('Upload citizen.war to S3') {
+        stage('Deploy citizen.war to Nexus'){
             when {
-               expression { params.Apply == true }
+                expression { params.Apply == true }
             }
-            steps {
-               sh "aws s3 cp ./target/citizen.war s3://geo-citizen-war/ ;"
+            steps{
+                sh "mvn deploy"
             }
-        } 
+        }  
         
         stage('Terraform init ASG') {
             steps{
@@ -94,7 +102,7 @@ pipeline {
                 expression { params.Apply == true }
             }
             steps{
-                sh "cd Terraform/asg/; terraform apply --auto-approve"
+                sh "cd Terraform/asg/; terraform apply --auto-approve -no-color"
             }
         }
 
@@ -104,6 +112,15 @@ pipeline {
             }
             steps{
                 sh "cd Terraform/asg/; terraform destroy --auto-approve"
+            }
+        }
+        
+        stage('Terraform destroy LB and RDS'){
+            when {
+                expression { params.Destroy == true }
+            }
+            steps{
+                sh "cd Terraform/lb_s3_rds/; terraform destroy --auto-approve"
             }
         }
     } 
