@@ -22,3 +22,6 @@ variable "ec2_ports" {
   type    = list(number)
   default = [22, 8080, 587]
 }
+
+variable "nexus_user" { type = secret }
+variable "nexus_password" { type = secret }
