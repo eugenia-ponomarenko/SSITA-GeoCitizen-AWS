@@ -47,7 +47,7 @@ resource "aws_autoscaling_group" "as_tf_web" {
     version = "$Latest"
   }
   
-  target_group_arns    = [var.target_group_arn]
+#   target_group_arns    = [var.target_group_arn]
   
   lifecycle {
     create_before_destroy = true
