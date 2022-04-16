@@ -9,10 +9,11 @@ resource "aws_launch_template" "web_tomcat" {
     arn = aws_iam_instance_profile.geocit_profile.arn
   }
   
-  user_data = templatefile("./user_data.tftpl", { 
+  user_data = filebase64(templatefile("./user_data.tftpl", { 
     nexus_user = "${var.nexus_user}"
     nexus_password = "${var.nexus_password}" 
     } 
+  )
   )
   
   lifecycle {
