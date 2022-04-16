@@ -6,8 +6,8 @@ resource "aws_s3_bucket" "geocits3" {
   }
 }
 
-resource "aws_s3_bucket_acl" "example" {
-  bucket = aws_s3_bucket.b.id
+resource "aws_s3_bucket_acl" "acl" {
+  bucket = aws_s3_bucket.geocits3.id
   acl    = "private"
 }
 
