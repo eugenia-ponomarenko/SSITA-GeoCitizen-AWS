@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     parameters { 
-        booleanParam(name: 'Apply', defaultValue: true, description: 'Update IP addresses in citizen on Tomcat9') 
-        booleanParam(name: 'Destroy', defaultValue: false, description: 'Clean build and deploy') 
+        booleanParam(name: 'Apply', defaultValue: true) 
+        booleanParam(name: 'Destroy', defaultValue: false) 
     }
     
     environment {
