@@ -23,5 +23,5 @@ variable "ec2_ports" {
   default = [22, 8080, 587]
 }
 
-variable "nexus_user" { sensetive = true }
-variable "nexus_password" { sensetive = true }
+variable "nexus_user" { sensitive = true }
+variable "nexus_password" { sensitive = true }
