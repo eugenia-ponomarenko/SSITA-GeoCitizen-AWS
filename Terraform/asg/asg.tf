@@ -11,8 +11,8 @@ resource "aws_launch_template" "web_tomcat" {
   user_data = templatefile("./user_data.tftpl", {
     nexus_user     = "${var.nexus_user}"
     nexus_password = "${var.nexus_password}"
-    }
-
+  }
+  )
   lifecycle {
     create_before_destroy = true
   }
