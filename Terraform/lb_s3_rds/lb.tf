@@ -50,11 +50,8 @@ resource "aws_alb_listener_rule" "rule-1" {
     target_group_arn = aws_lb_target_group.citizen_tg.arn
     type = "forward"
   }
-
   condition { field="path-pattern" values=["/citizen/*"] }
-
   listener_arn = aws_lb_listener.lb_listener.arn
-  priority = 100
 }
 
 # Create Security Groups
