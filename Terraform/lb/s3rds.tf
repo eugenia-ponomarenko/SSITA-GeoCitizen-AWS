@@ -1,13 +1,18 @@
+# resource "aws_s3_bucket" "geocits3" {
+#   bucket = local.bucket_name
+
+#   versioning {
+#     enabled = true
+#   }
+# }
+
+# resource "aws_s3_bucket_acl" "example" {
+#   bucket = aws_s3_bucket.b.id
+#   acl    = "private"
+# }
+
 resource "aws_s3_bucket" "geocits3" {
   bucket = local.bucket_name
-
-  versioning {
-    enabled = true
-  }
-}
-
-resource "aws_s3_bucket_acl" "example" {
-  bucket = aws_s3_bucket.b.id
   acl    = "private"
 }
 
