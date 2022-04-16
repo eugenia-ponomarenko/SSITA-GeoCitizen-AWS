@@ -6,22 +6,10 @@ resource "aws_lb" "tf_lb_webserver" {
   internal        = false
   security_groups = ["${aws_security_group.GeoCitizen_LB.id}"]
   subnets         = local.eu_central_1ab 
+  enable_cross_zone_load_balancing  = true
 }
 
-
-
-resource "aws_lb_listener" "webserver" {
-  load_balancer_arn = aws_lb.tf_lb_webserver.arn
-  port              = "80"
-  protocol          = "HTTP"
-
-  default_action {
-    target_group_arn = "${aws_lb_target_group.target_group.arn}"
-    type = "forward"
-  }
-}
-
-resource "aws_lb_target_group" "target_group" {
+resource "aws_lb_target_group" "citizen_tg" {
   name        = "tf-geocitizen"
   port        = 8080
   protocol    = "HTTP"
@@ -31,21 +19,45 @@ resource "aws_lb_target_group" "target_group" {
   stickiness {
     enabled = true
     type    = "lb_cookie"
+    cookie_duration = 1800
   }
 
-#   health_check {
-#     path = "/citizen/index.html"
-#     port = 8080
-#     healthy_threshold = 6
-#     unhealthy_threshold = 2
-#     timeout = 2
-#     interval = 5
-#     matcher = "200"
-#   }
-  
-  
+  health_check {
+    path = "/citizen/index.html"
+    healthy_threshold = 6
+    unhealthy_threshold = 2
+    timeout = 2
+    interval = 5
+    matcher = "200"
+  }
 }
 
+# Create a Listener 
+resource "aws_lb_listener" "lb_listener" {
+  load_balancer_arn = aws_lb.tf_lb_webserver.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    target_group_arn = "${aws_lb_target_group.citizen_tg.arn}"
+    type = "forward"
+  }
+}
+
+# Create Listener Rules
+resource "aws_alb_listener_rule" "rule-1" {
+  action {
+    target_group_arn = aws_lb_target_group.citizen_tg.arn
+    type = "forward"
+  }
+
+  condition { field="path-pattern" values=["/citizen/*"] }
+
+  listener_arn = aws_lb_listener.lb_listener.arn
+  priority = 100
+}
+
+# Create Security Groups
 resource "aws_security_group" "GeoCitizen_LB" {
   name        = local.lb_security_group
   description = "Security Group for Web Server"
