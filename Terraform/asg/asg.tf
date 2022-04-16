@@ -32,7 +32,6 @@ resource "aws_autoscaling_group" "as_tf_web" {
   max_size             = 3
   desired_capacity     = 2
   availability_zones   = local.availability_zones
-  vpc_zone_identifier  = local.eu_central_1ab
   termination_policies = [
     "OldestInstance"
   ]
