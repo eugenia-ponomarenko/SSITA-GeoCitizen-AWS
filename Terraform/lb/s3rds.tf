@@ -1,3 +1,8 @@
+resource "aws_s3_bucket" "geocits3" {
+    bucket = local.bucket_name 
+    acl = "private" 
+}
+
 resource "aws_db_instance" "GeoCitDB" {
   allocated_storage      = 10
   engine                 = "postgres"
