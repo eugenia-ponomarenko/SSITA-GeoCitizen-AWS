@@ -8,6 +8,8 @@ resource "aws_lb" "tf_lb_webserver" {
   subnets         = local.eu_central_1ab 
 }
 
+
+
 resource "aws_lb_listener" "webserver" {
   load_balancer_arn = aws_lb.tf_lb_webserver.arn
   port              = "80"
@@ -30,7 +32,7 @@ resource "aws_lb_target_group" "target_group" {
     enabled = true
     type    = "lb_cookie"
   }
-  
+
 #   health_check {
 #     path = "/citizen/index.html"
 #     port = 8080
@@ -38,8 +40,10 @@ resource "aws_lb_target_group" "target_group" {
 #     unhealthy_threshold = 2
 #     timeout = 2
 #     interval = 5
-#     matcher = "200"  # has to be HTTP 200 or fails
+#     matcher = "200"
 #   }
+  
+  
 }
 
 resource "aws_security_group" "GeoCitizen_LB" {
