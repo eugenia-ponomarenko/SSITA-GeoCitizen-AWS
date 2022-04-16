@@ -14,7 +14,7 @@ resource "aws_launch_template" "web_tomcat" {
     create_before_destroy = true
   }
   
-  tags = {
+  tag {
     key                 = "Name"
     value               = "WebServer"
     propagate_at_launch = true
@@ -26,17 +26,24 @@ resource "aws_launch_template" "web_tomcat" {
 resource "aws_autoscaling_group" "as_tf_web" {
   name                 = local.asg_name
   min_size             = 1
-  max_size             = 2
+  max_size             = 3
   desired_capacity     = 2
   availability_zones   = local.availability_zones
-  target_group_arns    = [var.target_group_arn]
-  
-  lifecycle {
-    create_before_destroy = true
-  }
+  vpc_zone_identifier  = local.eu_central_1ab
+  termination_policies = [
+    "OldestInstance"
+  ]
+
+  health_check_type = "ELB"
   
   launch_template {
     id      = aws_launch_template.web_tomcat.id
     version = "$Latest"
+  }
+  
+  target_group_arns    = [var.target_group_arn]
+  
+  lifecycle {
+    create_before_destroy = true
   }
 }
