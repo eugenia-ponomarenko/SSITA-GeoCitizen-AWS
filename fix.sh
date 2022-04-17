@@ -2,19 +2,6 @@
 #################################################
 # Set the environment variables
 
-#----------------------------------------------------------------------------------------------------
-## Update email credentials
-
-. ./emailCredentials
-
-old_mail="[a-z0-9.]\{5,\}@gmail\.com"
-old_passwd="email.password=[A-Za-z0-9!@#$%^&*-]\{8,32\}"
-new_passwd="email.password=$password"
-
-sed -i "s/$old_mail/$email/g" ./src/main/resources/application.properties
-sed -i "s/$old_passwd/$new_passwd/g" ./src/main/resources/application.properties
-
-
 . ./Terraform/hosts
 
 #----------------------------------------------------------------------------------------------------
