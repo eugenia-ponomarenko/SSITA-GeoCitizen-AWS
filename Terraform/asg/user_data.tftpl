@@ -3,7 +3,7 @@ sudo apt-add-repository ppa:ansible/ansible
 sudo apt update
 sudo apt install -y awscli ansible git
 # Download citizen.war from Nexus
-NEXUS_URL=http://130.162.35.117:8081
+NEXUS_URL=${nexus_url}
 MAVEN_REPO=maven-snapshots
 GROUP_ID=com.softserveinc
 ARTIFACT_ID=geo-citizen
