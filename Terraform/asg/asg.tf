@@ -21,13 +21,6 @@ resource "aws_launch_template" "web_tomcat" {
   lifecycle {
     create_before_destroy = true
   }
-  
-  tags = {
-    key                 = "Name"
-    value               = "WebServer"
-    propagate_at_launch = true
-  }
-
 }
 
 # Create AutoScaling group
