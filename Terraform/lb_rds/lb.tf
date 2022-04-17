@@ -26,7 +26,6 @@ resource "aws_lb_target_group" "citizen_tg" {
     path                = "/citizen/index.html"
     healthy_threshold   = 6
     unhealthy_threshold = 2
-#     port                = 80
     timeout             = 2
     interval            = 5
     matcher             = "200"
