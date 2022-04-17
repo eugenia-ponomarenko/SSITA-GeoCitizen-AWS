@@ -82,16 +82,7 @@ pipeline {
             steps{
                 sh 'sudo sed -i "s/192.168.1.125:8081/10.0.0.124:8081/g" ./pom.xml'
             }
-        } 
-       
-        stage('Build GeoCitizen using Maven'){
-            when {
-                expression { params.Apply == true }
-            }
-            steps{
-                sh "mvn install"
-            }
-        }  
+        }
         
         stage('Deploy citizen.war to Nexus'){
             when {
