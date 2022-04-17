@@ -17,28 +17,10 @@ resource "aws_iam_role" "GeoCit_Role" {
 EOF
 }
 
-resource "aws_iam_policy" "policy" {
-  name   = "RDSAndS3FullAcess"
-  policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:*",
-                "s3-object-lambda:*",
-                "rds:*"
-            ],
-            "Resource": "*"
-        }
-    ]
-  })
-}
-
 resource "aws_iam_policy_attachment" "attach_policy" {
   name       = local.iam_policy_att_name
   roles      = ["${aws_iam_role.GeoCit_Role.name}"]
-  policy_arn = aws_iam_policy.policy.arn
+  policy_arn = local.policy_arn
 }
 
 resource "aws_iam_instance_profile" "geocit_profile" {
