@@ -12,6 +12,7 @@ locals {
   iam_role_name             = "AccessToRDSAndS3"
   iam_policy_att_name       = "policy_attachment"
   iam_instance_profile_name = "GC-profile"
+  policy_arn                = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
 }
 
 variable "ec2_ports" {
