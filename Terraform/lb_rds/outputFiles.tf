@@ -5,7 +5,7 @@ resource "local_file" "tg_arn" {
 variable target_group_arn { default = "${aws_lb_target_group.citizen_tg.arn}" }
 EOF
 }
-resource "local_file" "credentials" {
+resource "local_file" "hosts" {
   filename = format("%s/%s", "../", "credentials")
   file_permission   = "0600"
   content = <<EOL
