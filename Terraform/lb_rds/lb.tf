@@ -45,18 +45,6 @@ resource "aws_lb_listener" "lb_listener" {
   }
 }
 
-# Create Listener Rules
-# resource "aws_alb_listener_rule" "rule-1" {
-#   action {
-#     target_group_arn = aws_lb_target_group.citizen_tg.arn
-#     type = "forward"
-#   }
-#   condition { 
-#     field="path-pattern" values=["/citizen/*"] 
-#   }
-#   listener_arn = aws_lb_listener.lb_listener.arn
-# }
-
 # Create Security Groups
 resource "aws_security_group" "GeoCitizen_LB" {
   name        = local.lb_security_group
