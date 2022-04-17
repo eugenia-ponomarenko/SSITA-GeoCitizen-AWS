@@ -24,25 +24,25 @@ pipeline {
          }
         
         stage('Copy email credentials') {
-            when {
-                expression { params.Apply == true }
-            }
             steps {
               sh "sudo cp \$EMAIL_CREDENTIALS ./"
-              sh "sudo cp \$psql_var ./Terraform/lb_s3_rds/"
+              sh "sudo chmod 755 ./emailCredentials"
+              
+              sh "sudo cp \$psql_var ./Terraform/lb_rds/"
+              sh "sudo chmod 755 ./Terraform/lb_rds/psql_var.tf"
+              
               sh "sudo cp \$NEXUS ./Terraform/asg/"
+              sh "sudo chmod 755 ./Terraform/asg/nexus_var.tf"
+              
               sh "sudo cp \$SETTINGS_MAVEN /var/lib/jenkins/.m2/"
               sh "sudo cp \$SECURITY_SETTINGS_MAVEN /var/lib/jenkins/.m2/"
-              sh "sudo chmod 755 ./Terraform/lb_s3_rds/psql_var.tf"
-              sh "sudo chmod 755 ./emailCredentials"
               sh "sudo chmod 755 /var/lib/jenkins/.m2/settings.xml"
-              sh "sudo chmod 755 ./Terraform/asg/nexus_var.tf"
             }
         }
         
         stage('Terraform init LB and RDS') {
             steps {
-                sh "cd Terraform/lb_s3_rds/; terraform init"
+                sh "cd Terraform/lb_rds/; terraform init"
             }
         }
         
@@ -51,7 +51,7 @@ pipeline {
                 expression { params.Apply == true }
             }
             steps {
-                    sh "cd Terraform/lb_s3_rds/; terraform apply --auto-approve -no-color"
+                sh "cd Terraform/lb_rds/; terraform apply --auto-approve -no-color"
             }
         }
         
@@ -60,7 +60,7 @@ pipeline {
                 expression { params.Apply == true }
             }
             steps{
-                sh "sudo sh changeEmailAndIP.sh"
+                sh "sudo sh fix.sh"
             }
         }    
         
@@ -111,7 +111,7 @@ pipeline {
                 expression { params.Destroy == true }
             }
             steps{
-                sh "cd Terraform/asg/; terraform destroy --auto-approve"
+                sh "cd Terraform/asg/; terraform destroy --auto-approve -no-color"
             }
         }
         
@@ -120,7 +120,7 @@ pipeline {
                 expression { params.Destroy == true }
             }
             steps{
-                sh "cd Terraform/lb_s3_rds/; terraform destroy --auto-approve"
+                sh "cd Terraform/lb_rds/; terraform destroy --auto-approve -no-color"
             }
         }
     } 
