@@ -69,6 +69,7 @@
     state: started
     enabled: yes
   when: ansible_service_mgr == "systemd"
+  
 - name: Set UI access credentials
   template:
     src: templates/tomcat-users.xml
