@@ -15,7 +15,7 @@ new_passwd="email.password=$password"
 sed -i "s/$old_mail/$email/g" ./src/main/resources/application.properties
 sed -i "s/$old_passwd/$new_passwd/g" ./src/main/resources/application.properties
 
-. ./Terraform/credentials
+. ./Terraform/hosts
 
 ##################Adjusting_application.properties###############################
 sed -i -E \
