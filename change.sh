@@ -21,8 +21,8 @@ old_serverip="localhost\|[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"
 old_dbip="postgresql:\/\/[a-zA-Z0-9.-]*:5432"
 new_dbip="postgresql:\/\/$db_host"
 
-sed -i "s/$old_serverip:8080/$lb_dns:80/g; \ 
-           s/$old_dbip/$new_dbip/g; " ./src/main/resources/application.properties
+sed -i "s/$old_serverip:8080/$lb_dns:80/g" ./src/main/resources/application.properties
+sed -i "s/$old_dbip/$new_dbip/g"  ./src/main/resources/application.properties
 
 #----------------------------------------------------------------------------------------------------
 # Repair js
