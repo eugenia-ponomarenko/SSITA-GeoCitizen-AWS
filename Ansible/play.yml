@@ -7,10 +7,8 @@
   
   vars:
     tomcat_ver: 9.0.62                      
-    ui_manager_user: login                    
-    ui_manager_pass: passwd                    
-    ui_admin_username: login                  
-    ui_admin_pass: passwd   
+    ui_user: login                    
+    ui_pass: passwd 
 
   roles:
     - tomcat9
