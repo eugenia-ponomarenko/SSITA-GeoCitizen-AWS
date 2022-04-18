@@ -21,7 +21,7 @@ pipeline {
             }
          }
         
-        stage('Copy email credentials') {
+        stage('Copy settings.xml for access to Nexus') {
             steps {
               sh "sudo cp \$SETTINGS_MAVEN /var/lib/jenkins/.m2/"
               sh "sudo cp \$SECURITY_SETTINGS_MAVEN /var/lib/jenkins/.m2/"
@@ -47,7 +47,7 @@ pipeline {
             }
         }
         
-        stage('Change email credentials in application.properties'){
+        stage('Change email credentials and IP in GeoCitizen files'){
             steps{
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'emailCredentials',
                  usernameVariable: 'email_login', passwordVariable: 'email_password']]){
