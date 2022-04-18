@@ -10,7 +10,7 @@ resource "aws_lb" "tf_lb_webserver" {
 }
 
 resource "aws_lb_target_group" "citizen_tg" {
-  name        = "tf-geocitizen"
+  name        = local.tg_name
   port        = 8080
   protocol    = "HTTP"
   target_type = "instance"
