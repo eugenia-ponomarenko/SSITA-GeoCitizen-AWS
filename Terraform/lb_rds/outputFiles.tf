@@ -8,9 +8,9 @@ EOF
 resource "local_file" "hosts" {
   filename = format("%s/%s", "../", "hosts.sh")
   file_permission   = "0600"
-  content = <<EOL
+  content = <<EOF
 #!/bin/bash
 lb_dns="${aws_lb.tf_lb_webserver.dns_name}"
 db_host="${aws_db_instance.GeoCitDB.endpoint}"  
-EOL
+EOF
 }
