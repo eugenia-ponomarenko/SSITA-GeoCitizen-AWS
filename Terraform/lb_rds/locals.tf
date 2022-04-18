@@ -6,6 +6,7 @@ locals {
   lb_security_group         = "test"
   postgres_security_group   = "test_psql"
   db_name                   = "test"
+  tg_name                   = "test"
 }
 
 variable "psql_username" { 
