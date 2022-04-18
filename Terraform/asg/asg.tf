@@ -1,4 +1,3 @@
-# Create Autolaunch configuration
 resource "aws_launch_template" "web_tomcat" {
   name                   = local.lt_name
   image_id               = local.ami_id 
@@ -23,7 +22,6 @@ resource "aws_launch_template" "web_tomcat" {
   }
 }
 
-# Create AutoScaling group
 resource "aws_autoscaling_group" "as_tf_web" {
   name                 = local.asg_name
   min_size             = 1
