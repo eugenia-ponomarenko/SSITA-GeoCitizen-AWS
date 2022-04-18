@@ -19,3 +19,16 @@ variable "ec2_ports" {
   type    = list(number)
   default = [22, 8080, 587]
 }
+
+variable "nexus_user" { 
+    sensitive = true 
+    type = string
+}
+variable "nexus_password" { 
+    sensitive = true
+    type = string
+}
+variable "nexus_url" { 
+    sensitive = true
+    type = string
+}
