@@ -4,7 +4,7 @@ locals {
   webserver_security_group  = "test"
   vpc_id                    = "test"
   lb_security_group         = "test"
-  postgres_security_group   = "test"
+  postgres_security_group   = "test_psql"
   db_name                   = "test"
 }
 
