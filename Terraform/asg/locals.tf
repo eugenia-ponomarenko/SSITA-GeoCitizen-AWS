@@ -5,13 +5,13 @@ locals {
   eu_central_1ab            = ["subnet-0bd44ce4febe6eacb", "subnet-0f13e4432ca16d78a"]
   vpc_id                    = "vpc-008b05236db3e2d5e"
   key_name                  = "geocit-app"
-  asg_name                  = "AS_TF_WebServer"
-  lt_name                   = "WebServerTomcat"
-  vm_name                   = "Ubuntu_WebServer"
-  webserver_security_group  = "Ubuntu Security Group"
-  iam_role_name             = "AccessToRDSAndS3"
-  iam_policy_att_name       = "policy_attachment"
-  iam_instance_profile_name = "GC-profile"
+  asg_name                  = "test"
+  lt_name                   = "test"
+  vm_name                   = "test"
+  webserver_security_group  = "test"
+  iam_role_name             = "test"
+  iam_policy_att_name       = "test"
+  iam_instance_profile_name = "test"
   policy_arn                = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
 }
 
