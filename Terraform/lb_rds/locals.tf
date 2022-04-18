@@ -6,7 +6,7 @@ locals {
   lb_security_group         = "GeoCitizen_LB"
   postgres_security_group   = "Postgres SecurityGroup"
   db_name                   = "PostgreSQL GeoCitizen"
-  bucket_name               = "geo-citizen-war"
+  tg_name                  = "tf-geocitizen"
 }
 
 variable "psql_username" { 
