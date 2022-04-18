@@ -8,3 +8,12 @@ locals {
   db_name                   = "PostgreSQL GeoCitizen"
   bucket_name               = "geo-citizen-war"
 }
+
+variable "psql_username" { 
+    sensitive = true 
+    type = string
+}
+variable "psql_password" { 
+    sensitive = true
+    type = string
+}
