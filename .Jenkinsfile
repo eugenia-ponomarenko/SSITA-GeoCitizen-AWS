@@ -9,12 +9,9 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID        = credentials('TF_AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY    = credentials('TF_AWS_SECRET_ACCESS_KEY')
-        email_login              = credentials('email_login')
-        email_password           = credentials('email_password')
-        psql_var                 = credentials('psql_var')
         SETTINGS_MAVEN           = credentials('settings_maven')
         SECURITY_SETTINGS_MAVEN  = credentials('security_settings_maven')
-        NEXUS                    = credentials('nexus-maven')
+        TF_VAR_nexus_url         = "http://130.162.35.117:8081"
     }
     
     stages {
@@ -26,15 +23,9 @@ pipeline {
         
         stage('Copy email credentials') {
             steps {
-              sh "sudo cp \$psql_var ./Terraform/lb_rds/"
-              sh "sudo chmod 750 ./Terraform/lb_rds/psql_var.tf"
-              
-              sh "sudo cp \$NEXUS ./Terraform/asg/"
-              sh "sudo chmod 750 ./Terraform/asg/nexus_var.tf"
-              
               sh "sudo cp \$SETTINGS_MAVEN /var/lib/jenkins/.m2/"
               sh "sudo cp \$SECURITY_SETTINGS_MAVEN /var/lib/jenkins/.m2/"
-              sh "sudo chmod 750 /var/lib/jenkins/.m2/settings.xml"
+              sh "sudo chmod 755 /var/lib/jenkins/.m2/settings.xml"
             }
         }
         
@@ -49,19 +40,25 @@ pipeline {
                 expression { params.Apply == true }
             }
             steps {
-                sh "cd Terraform/lb_rds/; terraform apply --auto-approve -no-color"
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'psqlCreds',
+                 usernameVariable: 'TF_VAR_psql_username', passwordVariable: 'TF_VAR_psql_password']]){                
+                    sh "cd Terraform/lb_rds/; terraform apply --auto-approve -no-color"
+                }           
             }
         }
         
         stage('Change email credentials in application.properties'){
             steps{
-                script {
-                    sh '''#!/bin/bash
-                    email=${email_login}
-                    password=${email_password}
-                    sed -i "s/[a-z0-9.]\\{5,\\}@gmail\\.com/$email/g" ./src/main/resources/application.properties
-                    sed -i "s/email.password=[A-Za-z0-9!@#$%^&*-]\\{8,32\\}/email.password=$password/g" ./src/main/resources/application.properties
-                    '''
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'emailCredentials',
+                 usernameVariable: 'email_login', passwordVariable: 'email_password']]){
+                    script {
+                        sh '''#!/bin/bash
+                        email=${email_login}
+                        password=${email_password}
+                        sed -i "s/[a-z0-9.]\\{5,\\}@gmail\\.com/$email/g" ./src/main/resources/application.properties
+                        sed -i "s/email.password=[A-Za-z0-9!@#$%^&*-]\\{8,32\\}/email.password=$password/g" ./src/main/resources/application.properties
+                        '''
+                    }
                 }
             }
         }
@@ -104,7 +101,10 @@ pipeline {
                 expression { params.Apply == true }
             }
             steps{
-                sh "cd Terraform/asg/; terraform apply --auto-approve -no-color"
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'nexus',
+                 usernameVariable: 'TF_VAR_nexus_user', passwordVariable: 'TF_VAR_nexus_password']]){  
+                    sh "cd Terraform/asg/; terraform apply --auto-approve -no-color"
+                }
             }
         }
 
