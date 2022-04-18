@@ -8,7 +8,7 @@ locals {
   asg_name                  = "test"
   lt_name                   = "test"
   vm_name                   = "test"
-  webserver_security_group  = "test"
+  webserver_security_group  = "test_web"
   iam_role_name             = "test"
   iam_policy_att_name       = "test"
   iam_instance_profile_name = "test"
