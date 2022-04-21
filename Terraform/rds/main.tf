@@ -10,12 +10,12 @@ resource "aws_db_instance" "GeoCitDB" {
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.RDS_SecurityGroup.id]
    tags = {
-    Name = local.db_name
+    Name = "PostgreSQL GeoCitizen"
   }
 }
 
 resource "aws_security_group" "RDS_SecurityGroup" {
-  name        = local.postgres_security_group
+  name        = "Postgres SecurityGroup"
   description = "GeoCitizen. SecurityGroup for RDS"
 
   ingress {
