@@ -1,3 +1,10 @@
+locals {
+  iam_role_name             = "AccessRDS"
+  iam_policy_att_name       = "policy_attach"
+  policy_arn                = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
+  iam_instance_profile_name = "GCprofile"
+}
+
 resource "aws_iam_role" "geocit_accessToRDS" {
   name = local.iam_role_name
   assume_role_policy = <<EOF
