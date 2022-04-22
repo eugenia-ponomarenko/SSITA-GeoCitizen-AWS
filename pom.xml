@@ -616,7 +616,6 @@
             <url>https://repo.spring.io/libs-milestone</url>
         </repository>
 </repositories>
-<!--
 <distributionManagement>
     <repository>
       <id>nexus</id>
@@ -629,5 +628,4 @@
       <url>http://35.188.29.52:8081/repository/maven-snapshots</url>
     </snapshotRepository>
   </distributionManagement>
--->
 </project>
